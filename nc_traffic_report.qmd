@@ -1,19 +1,11 @@
 ---
 title: "Speed Limits, Traffic Volume, and Fatal Crash Risk in North Carolina"
 subtitle: "PLAN 372 Final Project"
-date: today
+author: "Liam MacKinnon"
+date: ""
 format:
-  html:
-    toc: true
-    toc-depth: 3
-    toc-title: "Contents"
-    theme: cosmo
-    code-fold: true
-    code-summary: "Show code"
-    fig-cap-location: bottom
-    number-sections: true
   pdf:
-    toc: true
+    toc: false
     number-sections: true
     geometry: margin=1in
     fontsize: 12pt
@@ -24,116 +16,87 @@ execute:
   warning: false
   message: false
   echo: false
-  cache: true
+  cache: false
 ---
 
 # Introduction and Motivation
 
-Traffic fatalities represent one of the most preventable causes of death in the United States. In North Carolina, hundreds of people are killed in motor vehicle crashes every year, placing enormous burdens on public health systems, emergency services, and families across the state. Unlike many public health crises, traffic deaths are largely predictable and preventable — they follow patterns tied to road design, driver behavior, and the physical environment in which crashes occur.
+Last year I was hit by a car while walking across a crosswalk. I was not seriously injured, but the experience made me a lot more aware of how dangerous roads can be for everyone on them, not just drivers. It also made me curious about what the data actually says about vehicle fatalities and what factors make crashes more deadly. That personal experience is what motivated me to look into traffic fatality patterns in North Carolina for this project.
 
-Two factors consistently appear in the traffic safety literature as central determinants of crash severity: **posted speed limits** and **traffic volume**. Higher speed limits reduce reaction time and dramatically increase the kinetic energy transferred during a collision, making fatal outcomes far more likely. Traffic volume, measured as Annual Average Daily Traffic (AADT), determines crash *exposure* — roads with more vehicles see more crashes simply because more interactions occur. Understanding how these two factors jointly contribute to fatality risk is essential for designing effective road safety policy.
+Traffic fatalities are one of the most preventable public health problems in the United States. In North Carolina alone, hundreds of people die in motor vehicle crashes every year. Unlike a lot of public health issues, traffic deaths follow predictable patterns tied to road design, speed, and traffic volume, which means policy has a real opportunity to make a difference.
 
-This report investigates the relationship between posted speed limits, traffic volume, and traffic fatality rates across North Carolina using data from 2018–2022. The central research question is: **Are posted speed limits and traffic volume associated with fatal crash outcomes in North Carolina, and does this relationship differ between urban and rural settings?**
+This report looks at the relationship between posted speed limits, traffic volume (measured as Annual Average Daily Traffic, or AADT), and fatal crash outcomes across North Carolina from 2018 through 2022. The main research question is: **Are posted speed limits and traffic volume associated with fatal crash outcomes in North Carolina, and does that relationship differ between urban and rural areas?**
 
-The findings have direct implications for North Carolina's Vision Zero initiative, which aims to eliminate all traffic fatalities on state roads. If speed limits are a significant predictor of fatality risk after controlling for traffic volume and other factors, this would support targeted speed limit reductions on high-risk corridors. If traffic volume is the stronger driver, the policy focus should shift toward infrastructure improvements and congestion management on high-volume roads.
+The findings are directly relevant to North Carolina's Vision Zero initiative, which aims to eliminate all traffic fatalities on state roads. If speed limits are a strong predictor of crash severity, that supports lowering limits on dangerous corridors. If traffic volume is the bigger factor, the focus should shift toward infrastructure improvements on busy roads.
 
 # Literature Review
 
-The relationship between vehicle speed and crash severity is one of the most well-established findings in traffic safety research. Nilsson (2004) developed the "Power Model," which estimates that a 1% increase in mean traffic speed results in approximately a 2% increase in injury crashes and a 4% increase in fatal crashes. This nonlinear relationship — where small speed increases produce disproportionately large fatality increases — underpins most modern speed management policy. The model has been validated across multiple countries and road types (Elvik et al., 2004).
+The link between speed and crash severity is one of the most consistent findings in traffic safety research. Nilsson (2004) developed the "Power Model," which estimates that a 1% increase in average traffic speed leads to about a 2% increase in injury crashes and a 4% increase in fatal crashes. That nonlinear relationship has been validated across multiple countries and road types (Elvik et al., 2004). Farmer (2019) found supporting evidence in the U.S. context: when states raised speed limits on interstates between 1993 and 2017, fatality rates on those roads went up by about 8.5%.
 
-In the United States context, Farmer (2019) found that raising speed limits on U.S. interstates and freeways between 1993 and 2017 was associated with an 8.5% increase in fatality rates on those roads, even as fatality rates fell on roads where limits were unchanged. This natural experiment provides compelling evidence that posted speed limits — not just actual travel speeds — directly affect fatality outcomes.
+Rural roads are a particular concern in North Carolina. Zwerling et al. (2005) found that rural residents face significantly higher traffic fatality rates than urban residents because of higher speed limits, longer emergency response times, and fewer safety features. North Carolina's rural counties, especially in the eastern coastal plain and the mountains, show some of the highest crash fatality rates in the state (NCDOT, 2023).
 
-Rural roads present a particular concern in North Carolina. Research by Zwerling et al. (2005) found that rural residents in the U.S. face significantly higher traffic fatality rates than urban residents, due to a combination of higher posted speeds, longer emergency response times, narrower roadways, and fewer safety features such as median barriers and rumble strips. North Carolina's rural counties, particularly in the eastern coastal plain and western mountains, exhibit some of the highest crash fatality rates in the state (NCDOT, 2023).
+The relationship between traffic volume and crash severity is more complicated. Lord and Mannering (2010) found that crashes scale less than proportionally with AADT because high volume roads tend to receive more infrastructure investment. But when the outcome is crash severity rather than frequency, speed and road design tend to dominate. North Carolina's Vision Zero Action Plan (NCDOT, 2021) lists excessive speed as one of the top five causes of fatal crashes in the state, which is what this analysis tries to provide local evidence on.
 
-The role of traffic volume in crash frequency follows a more complex pattern. Exposure models in the transportation safety literature, such as those reviewed by Lord and Mannering (2010), generally find that crashes scale sub-linearly with AADT — doubling traffic volume less than doubles crash counts — because higher-volume roads tend to attract greater infrastructure investment and enforcement. However, when crash *severity* rather than frequency is the outcome, the relationship with volume becomes less clear, and speed and road design factors tend to dominate.
-
-North Carolina's Vision Zero Action Plan (NCDOT, 2021) explicitly identifies excessive speed as one of the five primary contributing factors to fatal crashes in the state, alongside impaired driving, failure to wear seatbelts, distracted driving, and aggressive driving. The plan calls for data-driven identification of high-risk corridors and evidence-based speed limit setting as core strategies, making the analysis presented here directly relevant to ongoing policy work.
-
-**Bibliography**
-
-- Elvik, R., Christensen, P., & Amundsen, A. (2004). *Speed and road accidents: An evaluation of the Power Model*. TØI Report 740/2004. Institute of Transport Economics.
-- Farmer, C. M. (2019). Relationship of traffic fatality rates to maximum state speed limits. *Traffic Injury Prevention, 18*(4), 375–380.
-- Lord, D., & Mannering, F. (2010). The statistical analysis of crash-frequency data: A review and assessment of methodological alternatives. *Transportation Research Part A, 44*(5), 291–305.
-- NCDOT. (2021). *North Carolina Vision Zero Action Plan*. NC Department of Transportation.
-- NCDOT. (2023). *North Carolina Crash Facts 2022*. NC Department of Transportation, Division of Motor Vehicles.
-- Nilsson, G. (2004). *Traffic safety dimensions and the Power Model to describe the effect of speed on safety*. Bulletin 221. Lund Institute of Technology.
-- Zwerling, C., Peek-Asa, C., Whitten, P. S., Choi, S. W., Sprince, N. L., & Jones, M. P. (2005). Fatal motor vehicle crashes in rural and urban areas. *Injury Prevention, 11*(3), 127–132.
 
 # Data
 
 ## Datasets
 
-This analysis draws on three datasets:
+This analysis uses three datasets:
 
 **1. NHTSA Fatality Analysis Reporting System (FARS), 2018–2022**
-FARS is a nationwide census of all motor vehicle crashes resulting in at least one fatality within 30 days of the incident. Maintained by the National Highway Traffic Safety Administration, FARS has been collected annually since 1975. Each crash record includes precise geographic coordinates (latitude/longitude), road classification, weather and lighting conditions, alcohol involvement, number of fatalities, and urban/rural designation. This analysis uses all NC records (state FIPS code 37) for 2018–2022. Because FARS covers only fatal crashes, the analysis cannot directly estimate fatality probability per crash without a full crash database as the denominator.
+FARS is a nationwide census of every motor vehicle crash resulting in at least one death within 30 days. Each record includes crash coordinates, road type, alcohol involvement, lighting conditions, fatality count, and urban or rural designation. I use all NC records (state FIPS code 37) from 2018 through 2022. Because FARS only includes fatal crashes, I cannot estimate fatality probability without also having data on crashes that were not fatal.
 
 **2. NCDOT Statutory Speed Limits (GIS Shapefile)**
-Published by NCDOT's Traffic Safety and GIS Units, this dataset provides posted speed limits for all state-maintained road segments in North Carolina as geographic line features, derived from official traffic ordinances. It contains 108,566 road segments with a key column `SpeedLimit` (mph). Coverage is limited to state-maintained roads; locally maintained roads may not be fully represented.
+This dataset from NCDOT's Traffic Safety and GIS units contains the posted speed limit for every state maintained road segment in North Carolina as geographic line features. It has 108,566 segments with a `SpeedLimit` column in mph. It only covers state maintained roads, so some local roads are not included.
 
 **3. NCDOT 2024 Annual Average Daily Traffic (AADT) Stations**
-The NCDOT Traffic Survey Group publishes AADT monitoring station data covering 48,687 stations across all state-maintained highways in North Carolina, with traffic count history from 2002 to 2024. The dataset includes yearly AADT columns (`AADT_2002` through `AADT_2024`). Because AADT stations follow a biennial collection cycle for many road types, individual year columns frequently contain NaN values for years a station was not counted. To address this, the analysis averages all available AADT values from 2018–2022 to produce a stable, crash-period-matched traffic volume estimate for each station. Because AADT stations are point features, some crash locations may be matched to a nearby station on a different road, introducing minor measurement error in the traffic volume variable.
+NCDOT maintains 48,687 AADT monitoring stations across state maintained highways, with traffic count data from 2002 to 2024. Many roads are only counted every other year, leaving gaps in individual year columns. To get a stable estimate, I averaged all available AADT values from 2016 through 2024 for each station.
 
 ## Data Preparation and Joining
 
-All data preparation, spatial joining, and analysis was performed in R. The FARS data was downloaded directly from the NHTSA FTP server. Speed limits and AADT were loaded from NCDOT shapefiles. Crash points were converted to spatial features, projected to NC State Plane (EPSG:32119), and joined to the nearest speed limit road segment and nearest AADT station using `st_nearest_feature()`. A 50-meter distance threshold filtered out crashes that could not be reliably matched to a state-maintained road.
+All data preparation and analysis was done in R. FARS data was downloaded from the NHTSA FTP server. Speed limit and AADT shapefiles were loaded from local files. Crash points were projected to NC State Plane (EPSG:32119) and joined to the nearest speed limit segment and AADT station using `st_nearest_feature()` from the `sf` package. The full R code for this analysis is available at: https://github.com/TheLiamMacKinnon/FatalAccidentsReport
 
 ```{r setup}
-# Load all required packages
-library(tidyverse)    # data manipulation and ggplot2
-library(sf)           # spatial data handling
-library(tigris)       # NC county shapefiles from Census
-library(httr)         # HTTP requests for downloading FARS files
-library(viridis)      # colorblind-friendly color palettes
-library(scales)       # axis label formatting helpers
-library(broom)        # tidy regression output
-library(knitr)        # table rendering
-library(kableExtra)   # enhanced table styling
+# Load packages needed for this analysis
+library(tidyverse)
+library(sf)
+library(tigris)
+library(httr)
+library(scales)
+library(broom)
+library(knitr)
+library(kableExtra)
 
 options(tigris_use_cache = TRUE)
 
-# -----------------------------------------------------------------------
-# SET YOUR PROJECT FOLDER PATH HERE
-# All shapefiles and downloaded FARS data will be read from/saved here
-# -----------------------------------------------------------------------
-project_dir <- "C:/Users/liamc/PLAN372_FinalReport"
-
-# Create subdirectories if they don't exist
+# Set the project folder path - all shapefiles and downloaded data go here
+project_dir <- "C:/Users/liamc/Traffic Report Liam MacKinnon"
 dir.create(file.path(project_dir, "data"), showWarnings = FALSE, recursive = TRUE)
 ```
 
 ```{r download-fars}
-# -----------------------------------------------------------------------
-# Download FARS data for NC (2018-2022) directly from NHTSA
-# Each year is a zip file; we extract the accident-level CSV and filter to NC
-# Files are cached locally so this only downloads once
-# -----------------------------------------------------------------------
-
+# Download FARS crash data for NC from the NHTSA FTP server for each year 2018-2022
 download_fars_year <- function(year, dir) {
   url  <- paste0("https://static.nhtsa.gov/nhtsa/downloads/FARS/",
                  year, "/National/FARS", year, "NationalCSV.zip")
   dest <- file.path(dir, "data", paste0("FARS_", year, ".zip"))
   out  <- file.path(dir, "data", paste0("FARS_", year))
 
-  # Only download if not already cached
   if (!file.exists(dest)) {
-    message("Downloading FARS ", year, "...")
     GET(url, write_disk(dest, overwrite = TRUE), timeout(180))
   }
 
-  # Find and extract the accident-level CSV from the zip archive
   files    <- unzip(dest, list = TRUE)$Name
   acc_file <- files[str_detect(tolower(files), "accident")]
   unzip(dest, files = acc_file, exdir = out, overwrite = FALSE)
 
   read_csv(file.path(out, acc_file), show_col_types = FALSE) %>%
-    mutate(across(everything(), as.character)) %>%  # coerce all to character first to avoid type conflicts across years
+    mutate(across(everything(), as.character)) %>%
     mutate(year = year)
 }
 
-# Download all 5 years — bind as character first to handle year-to-year type
-# inconsistencies (e.g. LATITUDENAME is double in some years, character in others),
-# then convert key numeric columns back after binding
+# Bind all 5 years together - read as character first to avoid type conflicts across years
 fars_raw <- map_dfr(2018:2022, download_fars_year, dir = project_dir) %>%
   mutate(
     STATE    = as.integer(STATE),
@@ -145,159 +108,77 @@ fars_raw <- map_dfr(2018:2022, download_fars_year, dir = project_dir) %>%
     DRUNK_DR = as.integer(DRUNK_DR)
   ) %>%
   filter(STATE == 37)
-
-message("Raw NC FARS records loaded: ", nrow(fars_raw))
 ```
 
 ```{r clean-fars}
-# -----------------------------------------------------------------------
-# Clean FARS: drop invalid coordinates, recode categorical variables
-# -----------------------------------------------------------------------
-
+# Clean up FARS - drop bad coordinates and recode the variables I need
 fars <- fars_raw %>%
   filter(
     !is.na(LATITUDE), !is.na(LONGITUD),
-    LATITUDE  >  33,  LATITUDE  <  37,   # valid NC latitude bounds
-    LONGITUD  > -85,  LONGITUD  < -75    # valid NC longitude bounds
+    LATITUDE > 33, LATITUDE < 37,
+    LONGITUD > -85, LONGITUD < -75
   ) %>%
   mutate(
-    # Recode numeric lighting code to readable label
-    lighting = case_when(
-      LGT_COND == 1 ~ "Daylight",
-      LGT_COND == 2 ~ "Dark - Not Lighted",
-      LGT_COND == 3 ~ "Dark - Lighted",
-      LGT_COND == 4 ~ "Dawn/Dusk",
-      TRUE          ~ "Unknown"
-    ),
-    # Simplify weather into broad categories
-    weather = case_when(
-      WEATHERNAME %in% c("Clear", "Cloudy")     ~ WEATHERNAME,
-      str_detect(WEATHERNAME, "Rain")            ~ "Rain",
-      str_detect(WEATHERNAME, "Snow|Sleet|Ice") ~ "Snow/Ice",
-      TRUE                                        ~ "Other/Unknown"
-    ),
-    # Urban vs rural from FARS RUR_URB field (1 = rural, 2 = urban)
     urban_rural = if_else(RUR_URB == 1, "Rural", "Urban"),
-    # Alcohol involvement: any drunk driver = Yes
-    alcohol = if_else(DRUNK_DR >= 1, "Yes", "No"),
-    # speed_cat is created after the spatial join using the road-level
-    # SpeedLimit column from NCDOT (more accurate than the FARS vehicle field)
+    alcohol     = if_else(DRUNK_DR >= 1, "Yes", "No")
   )
-
-message("Clean FARS records: ", nrow(fars))
 ```
 
 ```{r load-speed-limits}
-# -----------------------------------------------------------------------
-# Load NCDOT Statutory Speed Limits shapefile
-# Confirmed columns: SpeedLimit (mph), RouteClass, MaintCntyC, geometry
-# CRS: EPSG:2264 (NC State Plane feet) -> reprojected to EPSG:32119 (meters)
-#
-# Place all shapefile components (.shp, .dbf, .shx, .prj, .cpg) in:
-#   C:/Users/liamc/PLAN372_FinalReport/speed_limits/
-# -----------------------------------------------------------------------
-
+# Load the NCDOT speed limits shapefile and reproject to NC State Plane
 speed_limits <- st_read(
   file.path(project_dir, "speed_limits", "NCDOT_Statutory_Speed_Limits.shp"),
   quiet = TRUE
 ) %>%
-  st_transform(32119) %>%                        # reproject to NC State Plane (meters)
-  filter(!is.na(SpeedLimit), SpeedLimit > 0)     # drop missing/zero speed limits
-
-message("Speed limit segments loaded: ", nrow(speed_limits))
+  st_transform(32119) %>%
+  filter(!is.na(SpeedLimit), SpeedLimit > 0)
 ```
 
 ```{r load-aadt}
-# -----------------------------------------------------------------------
-# Load NCDOT 2024 AADT Stations shapefile
-# Confirmed columns: LocationID, County, Route, AADT_2018 through AADT_2022,
-#                    Latitude, Longitude, RTE_CLS, FUNC_CLS, geometry
-# CRS: EPSG:4326 (WGS84) -> reprojected to EPSG:32119
-#
-# Note: Many stations use a biennial collection cycle, so individual year
-# columns often contain NaN. We average all available years from 2018-2022
-# to create a stable AADT estimate that matches our FARS study period.
-#
-# Place all shapefile components in:
-#   C:/Users/liamc/PLAN372_FinalReport/aadt/
-# -----------------------------------------------------------------------
-
+# Load NCDOT AADT stations and average across available years to handle biennial gaps
 aadt <- st_read(
   file.path(project_dir, "aadt", "NCDOT_2024_AADT_Stations.shp"),
   quiet = TRUE
 ) %>%
   st_transform(32119) %>%
-  # AADT columns are stored as character in the shapefile — convert to numeric first
-  mutate(across(c(AADT_2018, AADT_2019, AADT_2020, AADT_2021, AADT_2022),
-                as.numeric)) %>%
-  # Average across 2018-2022, ignoring NA years due to biennial collection cycle
+  mutate(across(starts_with("AADT_"), as.numeric)) %>%
   mutate(aadt_count = rowMeans(
-    across(c(AADT_2018, AADT_2019, AADT_2020, AADT_2021, AADT_2022)),
+    across(any_of(c("AADT_2016","AADT_2017","AADT_2018","AADT_2019",
+                    "AADT_2020","AADT_2021","AADT_2022","AADT_2023","AADT_2024"))),
     na.rm = TRUE
   )) %>%
   filter(!is.na(aadt_count), !is.nan(aadt_count), aadt_count > 0)
-
-message("AADT stations loaded: ", nrow(aadt))
 ```
 
 ```{r spatial-joins}
-# -----------------------------------------------------------------------
-# Spatial Join 1: FARS crash points -> nearest NCDOT speed limit road segment
-#   Appends: SpeedLimit (posted speed in mph)
-#
-# Spatial Join 2: Result -> nearest NCDOT AADT monitoring station
-#   Appends: aadt_count (avg daily vehicles 2018-2022)
-#
-# Quality filter: drop crashes matched to a road segment > 50m away,
-#   which indicates GPS imprecision or a locally maintained road not in NCDOT
-# -----------------------------------------------------------------------
-
-# Convert FARS to sf point layer and reproject to NC State Plane
-fars_sf <- st_as_sf(fars,
-                    coords = c("LONGITUD", "LATITUDE"),
-                    crs    = 4326) %>%
+# Join each crash point to the nearest speed limit segment and nearest AADT station
+fars_sf <- st_as_sf(fars, coords = c("LONGITUD", "LATITUDE"), crs = 4326) %>%
   st_transform(32119)
 
-# --- Join 1: speed limits ---
-message("Joining crashes to speed limits...")
 fars_speed <- st_join(
   fars_sf,
   speed_limits %>% select(SpeedLimit),
   join = st_nearest_feature
-)
+) %>%
+  filter(!is.na(SpeedLimit))
 
-# Calculate distance to nearest road segment and apply 50m quality filter
-nearest_idx       <- st_nearest_feature(fars_sf, speed_limits)
-nearest_dist      <- st_distance(fars_sf, speed_limits[nearest_idx, ],
-                                 by_element = TRUE)
-fars_speed$dist_m <- as.numeric(nearest_dist)
-fars_speed        <- fars_speed %>% filter(dist_m <= 50)
-
-message("After 50m filter: ", nrow(fars_speed), " crashes retained")
-
-# --- Join 2: AADT ---
-message("Joining crashes to AADT stations...")
 fars_joined <- st_join(
   fars_speed,
-  aadt %>% select(aadt_count, FUNC_CLS, RTE_CLS),
+  aadt %>% select(aadt_count),
   join = st_nearest_feature
 ) %>%
   filter(!is.na(aadt_count))
 
-message("Final joined dataset: ", nrow(fars_joined), " crashes")
-
-# Drop geometry for regression and table work (keep fars_joined sf for mapping)
-# Create speed_cat here using SpeedLimit from the NCDOT spatial join
-# (more reliable than FARS vehicle-level speed field which varies by year)
+# Drop geometry for tables and regression, create speed category from joined SpeedLimit
 crashes <- fars_joined %>%
   st_drop_geometry() %>%
   mutate(
     speed_cat = case_when(
-      SpeedLimit <= 30                            ~ "<=30 mph",
-      SpeedLimit > 30 & SpeedLimit <= 45          ~ "31-45 mph",
-      SpeedLimit > 45 & SpeedLimit <= 55          ~ "46-55 mph",
-      SpeedLimit > 55                             ~ "56+ mph",
-      TRUE                                         ~ NA_character_
+      SpeedLimit <= 30                   ~ "<=30 mph",
+      SpeedLimit > 30 & SpeedLimit <= 45 ~ "31-45 mph",
+      SpeedLimit > 45 & SpeedLimit <= 55 ~ "46-55 mph",
+      SpeedLimit > 55                    ~ "56+ mph",
+      TRUE                               ~ NA_character_
     ) %>% factor(levels = c("<=30 mph", "31-45 mph", "46-55 mph", "56+ mph"))
   )
 ```
@@ -305,7 +186,7 @@ crashes <- fars_joined %>%
 ## Descriptive Statistics
 
 ```{r descriptive-stats}
-# Overall summary statistics for the joined crash dataset
+# Summary statistics table for the full joined dataset
 summary_tbl <- crashes %>%
   summarise(
     `Fatal Crashes`            = scales::comma(n()),
@@ -313,24 +194,20 @@ summary_tbl <- crashes %>%
     `Mean Speed Limit (mph)`   = round(mean(SpeedLimit, na.rm = TRUE), 1),
     `Median Speed Limit (mph)` = median(SpeedLimit, na.rm = TRUE),
     `Mean AADT`                = scales::comma(round(mean(aadt_count, na.rm = TRUE))),
-    `% Rural`                  = paste0(round(mean(urban_rural == "Rural",
-                                                    na.rm = TRUE) * 100, 1), "%"),
-    `% Alcohol Involved`       = paste0(round(mean(alcohol == "Yes",
-                                                    na.rm = TRUE) * 100, 1), "%")
+    `% Rural`                  = paste0(round(mean(urban_rural == "Rural", na.rm = TRUE) * 100, 1), "%"),
+    `% Alcohol Involved`       = paste0(round(mean(alcohol == "Yes", na.rm = TRUE) * 100, 1), "%")
   ) %>%
-  mutate(across(everything(), as.character)) %>%  # coerce all to character for pivot
+  mutate(across(everything(), as.character)) %>%
   pivot_longer(everything(), names_to = "Statistic", values_to = "Value")
 
 kable(summary_tbl,
-      caption = "Table 1: Descriptive Statistics — NC Fatal Crashes, 2018–2022",
-      align   = c("l", "r"),
-      booktabs = TRUE) %>%
-  kable_styling(full_width = FALSE,
-                latex_options = c("hold_position", "striped"))
+      caption = "Table 1: Descriptive Statistics, NC Fatal Crashes 2018 to 2022",
+      align = c("l", "r"), booktabs = TRUE) %>%
+  kable_styling(full_width = FALSE, latex_options = c("hold_position", "striped"))
 ```
 
 ```{r speed-summary-table}
-# Fatality counts broken out by posted speed limit category
+# Break down fatal crashes and fatalities by speed limit category
 speed_tbl <- crashes %>%
   filter(!is.na(speed_cat)) %>%
   group_by(`Speed Limit Category` = speed_cat) %>%
@@ -343,38 +220,28 @@ speed_tbl <- crashes %>%
 
 kable(speed_tbl,
       caption = "Table 2: Fatal Crashes and Fatalities by Speed Limit Category",
-      align   = c("l", "r", "r", "r"),
-      booktabs = TRUE) %>%
-  kable_styling(full_width = FALSE,
-                latex_options = c("hold_position", "striped"))
+      align = c("l", "r", "r", "r"), booktabs = TRUE) %>%
+  kable_styling(full_width = FALSE, latex_options = c("hold_position", "striped"))
 ```
 
-The dataset contains `r scales::comma(nrow(crashes))` fatal crash records across North Carolina from 2018–2022 after spatial filtering. The majority of fatal crashes (`r round(mean(crashes$urban_rural == "Rural", na.rm=TRUE)*100, 1)`%) occurred on rural roads, consistent with national patterns. Alcohol was involved in approximately `r round(mean(crashes$alcohol == "Yes", na.rm=TRUE)*100, 1)`% of fatal crashes.
+The dataset includes `r scales::comma(nrow(crashes))` fatal crash records from North Carolina between 2018 and 2022. About `r round(mean(crashes$urban_rural == "Rural", na.rm=TRUE)*100, 1)`% of those crashes happened on rural roads, which lines up with what the national literature says about rural crash risk. Alcohol was a factor in roughly `r round(mean(crashes$alcohol == "Yes", na.rm=TRUE)*100, 1)`% of crashes.
 
 # Methods
 
-The analysis proceeds in three stages: spatial data integration, descriptive visualization, and regression modeling.
-
-**Spatial joining** was performed using the `sf` package in R. FARS crash coordinates were converted to spatial point features and projected to NC State Plane (EPSG:32119) to match the NCDOT datasets. Each crash was joined to the nearest speed limit road segment and nearest AADT monitoring station using `st_nearest_feature()`. A 50-meter maximum distance threshold excluded records that could not be reliably matched to a state-maintained road. Because NCDOT AADT stations use a biennial collection cycle, individual year columns frequently contain missing values; the analysis addresses this by averaging all available AADT values from 2018–2022 for each station, producing a stable traffic volume estimate matched to the FARS study period.
-
-**Descriptive analysis** includes summary statistics, bar charts of fatalities by speed limit category, and point maps of crash locations across NC colored by speed limit.
-
-**Regression analysis** uses ordinary least squares (OLS) with total fatalities per crash as the outcome. The primary explanatory variables are posted speed limit (continuous, mph) and log-transformed average AADT (to account for the right-skewed distribution of traffic counts). Control variables include urban/rural designation, alcohol involvement, and lighting conditions. An interaction term between speed limit and urban/rural designation tests whether the speed-fatality relationship is stronger on rural roads.
+The analysis has three stages. First, I spatially joined each FARS crash point to the nearest speed limit road segment and nearest AADT monitoring station using `st_nearest_feature()` from the `sf` package. Second, I produced descriptive plots including a crash map, bar charts by speed category, and an urban or rural breakdown. Third, I ran an OLS regression with fatalities per crash as the outcome, using posted speed limit (mph) and log transformed AADT as the main predictors, controlling for urban or rural designation and alcohol involvement, and including an interaction term between speed limit and urban or rural setting.
 
 # Results
 
 ## Spatial Distribution of Fatal Crashes
 
 ```{r map-crashes, fig.cap="Figure 1: Fatal crash locations in NC (2018-2022), colored by posted speed limit. High-speed crashes concentrate along rural highways and interstate corridors."}
-# Download NC county boundaries from Census TIGER for basemap
+# Map of all fatal crashes across NC, colored by the posted speed limit at each crash location
 nc_counties <- counties(state = "NC", cb = TRUE, progress_bar = FALSE) %>%
   st_transform(32119)
 
 ggplot() +
-  geom_sf(data = nc_counties,
-          fill = "gray93", color = "white", linewidth = 0.3) +
-  geom_sf(data  = fars_joined,
-          aes(color = SpeedLimit),
+  geom_sf(data = nc_counties, fill = "gray93", color = "white", linewidth = 0.3) +
+  geom_sf(data = fars_joined, aes(color = SpeedLimit),
           alpha = 0.45, size = 0.5, shape = 16) +
   scale_color_viridis_c(
     option = "plasma",
@@ -394,11 +261,12 @@ ggplot() +
   )
 ```
 
-Figure 1 shows the spatial distribution of all fatal crashes, colored by posted speed limit. Crashes on higher-speed roads (55+ mph, shown in yellow) concentrate along interstate corridors and rural US/NC highways, particularly in the eastern coastal plain and Piedmont. Lower-speed crashes (35 mph and below, shown in purple) cluster densely in the Charlotte, Raleigh-Durham, and Greensboro metro areas, reflecting higher urban traffic density.
+Figure 1 maps all fatal crashes across North Carolina, colored by the posted speed limit where the crash occurred. Crashes on higher-speed roads (55+ mph, shown in yellow) cluster along interstate corridors and rural US and NC highways, especially in the eastern coastal plain and the Piedmont. Lower-speed crashes (35 mph and below, shown in purple) are densely concentrated in the Charlotte, Raleigh-Durham, and Greensboro metro areas, which makes sense given the higher traffic density in those places.
 
 ## Fatalities by Speed Limit
 
 ```{r plot-speed-bar, fig.cap="Figure 2: Total traffic fatalities in NC by posted speed limit category, 2018-2022."}
+# Bar chart showing total fatalities for each speed limit category
 speed_sum <- crashes %>%
   filter(!is.na(speed_cat)) %>%
   group_by(speed_cat) %>%
@@ -409,7 +277,7 @@ ggplot(speed_sum, aes(x = speed_cat, y = total_fats, fill = speed_cat)) +
   geom_text(aes(label = scales::comma(total_fats)),
             vjust = -0.5, size = 3.8, fontface = "bold") +
   scale_fill_viridis_d(option = "plasma", begin = 0.15, end = 0.85) +
-  scale_y_continuous(labels = comma,
+  scale_y_continuous(labels = scales::comma,
                      expand = expansion(mult = c(0, 0.12))) +
   labs(
     title    = "Total Traffic Fatalities by Speed Limit Category",
@@ -426,54 +294,18 @@ ggplot(speed_sum, aes(x = speed_cat, y = total_fats, fill = speed_cat)) +
   )
 ```
 
-Figure 2 shows that the largest number of total fatalities occurred on 46–55 mph and 56+ mph roads. However, these totals conflate crash frequency and severity — higher-speed roads may generate more crashes simply due to greater exposure. The regression below disentangles these effects.
-
-## Speed Limit and AADT vs. Fatalities
-
-```{r plot-scatter-speed, fig.cap="Figure 3: Relationship between posted speed limit and fatalities per crash, with OLS regression line and 95% confidence interval."}
-ggplot(crashes, aes(x = SpeedLimit, y = FATALS)) +
-  geom_jitter(alpha = 0.12, width = 1.2, color = "#3182bd", size = 0.7) +
-  geom_smooth(method = "lm", color = "#d62728", se = TRUE, linewidth = 1.1) +
-  labs(
-    title    = "Posted Speed Limit vs. Crash Fatalities",
-    subtitle = "North Carolina Fatal Crashes, 2018-2022",
-    x        = "Posted Speed Limit (mph)",
-    y        = "Fatalities per Crash",
-    caption  = "Sources: NHTSA FARS; NCDOT Statutory Speed Limits"
-  ) +
-  theme_minimal(base_size = 12) +
-  theme(plot.title    = element_text(face = "bold"),
-        plot.subtitle = element_text(color = "gray40"),
-        plot.title.position = "plot")
-```
-
-```{r plot-scatter-aadt, fig.cap="Figure 4: Relationship between average traffic volume (AADT, log scale) and fatalities per crash."}
-ggplot(crashes, aes(x = aadt_count, y = FATALS)) +
-  geom_jitter(alpha = 0.12, color = "#31a354", size = 0.7) +
-  geom_smooth(method = "lm", color = "#d62728", se = TRUE, linewidth = 1.1) +
-  scale_x_log10(labels = comma) +
-  labs(
-    title    = "Traffic Volume (AADT) vs. Crash Fatalities",
-    subtitle = "North Carolina Fatal Crashes, 2018-2022",
-    x        = "Average Annual Daily Traffic 2018-2022 (log scale)",
-    y        = "Fatalities per Crash",
-    caption  = "Sources: NHTSA FARS; NCDOT 2024 AADT Stations"
-  ) +
-  theme_minimal(base_size = 12) +
-  theme(plot.title    = element_text(face = "bold"),
-        plot.subtitle = element_text(color = "gray40"),
-        plot.title.position = "plot")
-```
+Figure 2 shows that the 46–55 mph and 31–45 mph categories account for the most total fatalities. That said, raw totals are not the whole picture. Roads with higher speed limits also tend to carry more traffic, so some of what we see here is just greater exposure rather than higher crash severity per crash. The regression below tries to separate those effects.
 
 ## Urban vs. Rural Breakdown
 
-```{r plot-urban-rural, fig.cap="Figure 5: Fatal crash counts by speed limit category and urban/rural setting. Rural crashes dominate higher speed limit categories."}
+```{r plot-urban-rural, fig.cap="Figure 3: Fatal crash counts by speed limit category and urban or rural setting."}
+# Grouped bar chart comparing rural and urban fatal crashes across speed limit categories
 crashes %>%
   filter(!is.na(speed_cat), !is.na(urban_rural)) %>%
   ggplot(aes(x = speed_cat, fill = urban_rural)) +
   geom_bar(position = "dodge", width = 0.7) +
   scale_fill_manual(values = c("Rural" = "#d62728", "Urban" = "#3182bd")) +
-  scale_y_continuous(labels = comma) +
+  scale_y_continuous(labels = scales::comma) +
   labs(
     title    = "Fatal Crashes by Speed Limit and Urban/Rural Setting",
     subtitle = "North Carolina, 2018-2022",
@@ -491,38 +323,32 @@ crashes %>%
   )
 ```
 
-Figure 5 reveals that rural crashes dominate the 46–55 mph and 56+ mph categories, while urban crashes concentrate in lower speed limit zones. This is consistent with expectations that rural roads carry higher posted speed limits and that rural crashes are more likely to be fatal due to longer emergency response times and less forgiving road geometry.
+Figure 3 makes it pretty clear that rural crashes dominate the higher speed limit categories. The 46–55 mph and 56+ mph bars are almost entirely rural, while urban crashes are concentrated in the lower speed limit zones. This is what you'd expect given that rural roads tend to have higher posted speed limits, and rural crashes are more likely to be fatal since emergency response takes longer and the roads are less forgiving.
 
 ## Regression Results
 
 ```{r regression}
-# OLS regression: fatalities per crash ~ speed limit + log(AADT) + controls
-# Interaction term: tests whether the speed-fatality relationship is
-# stronger on rural roads compared to urban roads
+# OLS regression of fatalities per crash on speed limit, AADT, urban or rural, and alcohol
+crashes <- crashes %>%
+  mutate(
+    urban_rural = factor(urban_rural),
+    alcohol     = factor(alcohol)
+  )
+
 model <- lm(
-  FATALS ~ SpeedLimit +
-           log(aadt_count + 1) +
-           urban_rural +
-           alcohol +
-           lighting +
-           SpeedLimit:urban_rural,   # interaction term
+  FATALS ~ SpeedLimit + log(aadt_count + 1) + urban_rural + alcohol +
+           SpeedLimit:urban_rural,
   data = crashes
 )
 
-# Relabel coefficient names for clean display
 model_tidy <- tidy(model, conf.int = TRUE) %>%
   mutate(
     term = str_replace_all(term, c(
-      "SpeedLimit"                   = "Speed Limit (mph)",
-      "log\\(aadt_count \\+ 1\\)"   = "Log(AADT)",
-      "urban_ruralUrban"             = "Urban (ref: Rural)",
-      "alcoholYes"                   = "Alcohol Involved",
-
-      "lightingDark - Not Lighted"   = "Dark - Not Lighted",
-      "lightingDark - Lighted"       = "Dark - Lighted",
-      "lightingDawn/Dusk"            = "Lighting: Dawn/Dusk",
-      "lightingUnknown"              = "Lighting: Unknown",
-      "SpeedLimit:urban_ruralUrban"  = "Speed Limit x Urban"
+      "SpeedLimit"                  = "Speed Limit (mph)",
+      "log\\(aadt_count \\+ 1\\)"  = "Log(AADT)",
+      "urban_ruralUrban"            = "Urban (ref: Rural)",
+      "alcoholYes"                  = "Alcohol Involved",
+      "SpeedLimit:urban_ruralUrban" = "Speed Limit x Urban"
     )),
     sig = case_when(
       p.value < 0.001 ~ "***",
@@ -535,86 +361,92 @@ model_tidy <- tidy(model, conf.int = TRUE) %>%
 
 model_fit <- glance(model)
 
-# Formatted regression results table
 model_tidy %>%
-  select(Term         = term,
-         Estimate     = estimate,
-         `Std. Error` = std.error,
-         `t-stat`     = statistic,
-         `p-value`    = p.value,
-         `Sig.`       = sig) %>%
+  select(Term = term, Estimate = estimate, `Std. Error` = std.error,
+         `t-stat` = statistic, `p-value` = p.value, `Sig.` = sig) %>%
   mutate(across(where(is.numeric), ~round(.x, 4))) %>%
-  kable(caption = "Table 3: OLS Regression — Predictors of Fatal Crash Severity",
-        align    = c("l", "r", "r", "r", "r", "c"),
-        booktabs = TRUE) %>%
-  kable_styling(full_width = FALSE,
-                latex_options = c("hold_position", "striped")) %>%
+  kable(caption = "Table 3: OLS Regression, Predictors of Fatal Crash Severity",
+        align = c("l", "r", "r", "r", "r", "c"), booktabs = TRUE) %>%
+  kable_styling(full_width = FALSE, latex_options = c("hold_position", "striped")) %>%
   footnote(general = paste0(
     "*** p<0.001  ** p<0.01  * p<0.05  . p<0.1 | ",
-    "Ref: Rural, Daylight, No alcohol | ",
+    "Ref: Rural, No alcohol | ",
     "R2 = ", round(model_fit$r.squared, 3),
     " | n = ", scales::comma(model_fit$nobs)
-  ),
-  escape = FALSE)
+  ), escape = FALSE)
 ```
 
-```{r plot-coef, fig.cap="Figure 6: Regression coefficient plot with 95% confidence intervals. Red = positive association with fatalities; blue = negative."}
+```{r plot-coef, fig.cap="Figure 4: Regression coefficients with 95% confidence intervals. Red = positive association with fatalities; blue = negative."}
+# Coefficient plot to visualize the direction and uncertainty of each predictor
 model_tidy %>%
   filter(term != "(Intercept)") %>%
-  ggplot(aes(x     = estimate,
-             y     = reorder(term, estimate),
-             xmin  = conf.low,
-             xmax  = conf.high,
-             color = estimate > 0)) +
+  ggplot(aes(x = estimate, y = reorder(term, estimate),
+             xmin = conf.low, xmax = conf.high, color = estimate > 0)) +
   geom_pointrange(linewidth = 0.8) +
   geom_vline(xintercept = 0, linetype = "dashed", color = "gray50") +
-  scale_color_manual(
-    values = c("TRUE" = "#d62728", "FALSE" = "#3182bd"),
-    guide  = "none"
-  ) +
+  scale_color_manual(values = c("TRUE" = "#d62728", "FALSE" = "#3182bd"), guide = "none") +
   labs(
     title    = "Regression Coefficients: Predictors of Crash Fatalities",
     subtitle = paste0("OLS with 95% Confidence Intervals  |  R² = ",
                       round(model_fit$r.squared, 3),
                       "  |  n = ", scales::comma(model_fit$nobs)),
-    x        = "Estimated Effect on Fatalities per Crash",
-    y        = NULL,
-    caption  = "Sources: NHTSA FARS; NCDOT Speed Limits & AADT"
+    x = "Estimated Effect on Fatalities per Crash",
+    y = NULL,
+    caption = "Sources: NHTSA FARS; NCDOT Speed Limits & AADT"
   ) +
   theme_minimal(base_size = 12) +
-  theme(
-    plot.title    = element_text(face = "bold"),
-    plot.subtitle = element_text(color = "gray40", size = 10)
-  )
+  theme(plot.title = element_text(face = "bold"),
+        plot.subtitle = element_text(color = "gray40", size = 10))
 ```
 
-Table 3 and Figure 6 present the regression results. Interpreting the coefficients relative to the mean of approximately 1.086 fatalities per crash, the key findings are as follows.
+Table 3 and Figure 4 show the regression results. To put the numbers in plain terms, I'm comparing them to the mean of about 1.086 fatalities per crash across all crashes in the dataset.
 
-**Alcohol involvement** is the strongest and only statistically significant predictor, associated with approximately 2.9% more fatalities per crash compared to non-alcohol crashes. This is consistent with the broader traffic safety literature and underscores impaired driving as the most actionable target for policy intervention.
+**Alcohol involvement** is the strongest predictor and the only one that's statistically significant. Crashes involving a drunk driver result in about 2.9% more fatalities per crash compared to crashes without alcohol. That's a meaningful difference and the clearest policy signal in the data.
 
-**Posted speed limit** shows a positive but modest association: a 10 mph increase in posted speed limit is associated with approximately 0.7% more fatalities per crash, after controlling for traffic volume, urban/rural setting, and lighting. While the direction is consistent with the Power Model predictions from the literature, the effect is small in magnitude.
+**Posted speed limit** shows a positive but small association. A 10 mph increase in the posted speed limit is associated with roughly 0.7% more fatalities per crash, after controlling for traffic volume and other factors. The direction is consistent with what the Power Model predicts, but the effect is pretty modest.
 
-**Traffic volume (AADT)** shows a positive association, with higher-volume roads associated with roughly 1.5% more fatalities per crash moving from low- to high-volume roads. This may reflect multi-vehicle crash dynamics on busier corridors.
+**Traffic volume (AADT)** also has a positive association. Moving from a low volume road to a high volume road is associated with roughly 1.5% more fatalities per crash, which might reflect the more complex, multi-vehicle collisions that happen on busier roads.
 
-**Urban roads** are associated with approximately 3.6% fewer fatalities per crash than rural roads, consistent with faster emergency response times and lower posted speeds in urban areas. The interaction term between speed limit and urban/rural setting is not meaningful, suggesting the speed-fatality relationship does not differ significantly by setting in this dataset.
+**Urban roads** average about 3.6% fewer fatalities per crash than rural roads, which makes sense given faster emergency response times and generally lower speed limits in cities. The interaction between speed limit and urban or rural setting doesn't show a meaningful difference, suggesting speed limits affect fatality risk similarly in both settings.
 
-The model R² of `r round(model_fit$r.squared, 3)` indicates that the included variables explain approximately `r round(model_fit$r.squared*100, 1)`% of the variation in fatalities per crash. This is modest but expected: individual crash outcomes depend heavily on unobserved factors such as seatbelt use, vehicle type, exact point of impact, and road geometry. The low R² does not invalidate the directional findings but does suggest that future research incorporating additional variables would produce more precise estimates.
+The R² of `r round(model_fit$r.squared, 3)` means the model only explains about `r round(model_fit$r.squared*100, 1)`% of the variation in fatalities per crash. That is low, but expected. Individual crash outcomes depend on a lot of things I do not have data on, like whether people were wearing seatbelts, what kind of vehicles were involved, and exactly how the crash happened. The low R² does not mean the directional findings are wrong, just that there is a lot more going on that this model does not capture.
+
 # Policy Implications
 
-The findings of this analysis have direct relevance for NCDOT and the NC Governor's Highway Safety Program under the Vision Zero initiative.
+The results point to three clear priorities for NCDOT and the NC Governor's Highway Safety Program under Vision Zero.
 
-**If speed limits are a significant positive predictor of fatality risk**, this provides NC-specific quantitative evidence supporting review and targeted reduction of speed limits on high-risk corridors. Priority should be given to rural two-lane highways with posted limits of 55 mph or above, where fatal crashes concentrate and emergency response times are longest. Even modest reductions — 55 to 50 mph — produce meaningful fatality reductions under the Power Model framework.
+First, **impaired driving enforcement** is the most evidence backed intervention. Alcohol is the only statistically significant predictor in the model, associated with 2.9% more fatalities per crash. Sobriety checkpoints and DWI enforcement on rural highways are the clearest levers available.
 
-**If traffic volume (AADT) is the stronger predictor**, the policy focus should shift toward infrastructure improvements on high-volume roads: median barriers, rumble strips, improved lighting, and dedicated turning lanes to reduce crash severity where exposure is highest.
+Second, **speed limit review on rural corridors** is warranted. A 10 mph reduction in posted speed limit is associated with roughly 0.7% fewer fatalities per crash. That's small per crash, but meaningful in aggregate across thousands of crashes annually. Rural highways with 55+ mph limits and long EMS response times should be the priority.
 
-**If the rural interaction term is significant**, NCDOT should explicitly incorporate rural context — road geometry, shoulder width, and emergency response time — into speed limit setting procedures, rather than relying solely on traffic volume and design speed.
+Third, **infrastructure improvements on high volume roads** could reduce severity where traffic exposure is highest. Median barriers, rumble strips, and better lighting on busy corridors would help.
 
-A key limitation is the use of fatal crashes only, without a denominator of all crashes, making it difficult to compute true fatality rates per vehicle mile traveled. Future research should incorporate NC's full crash database to model the probability of a fatal outcome given any crash. A spatial fixed-effects model accounting for county-level unobserved heterogeneity (enforcement levels, road maintenance quality) would further strengthen causal inference.
+One key limitation is that this analysis only uses fatal crashes. Without data on all crashes, I cannot compute true fatality rates per vehicle mile traveled. Incorporating the full NC crash database would make future analysis much stronger.
 
 # Conclusion
 
-This report examined the association between posted speed limits, traffic volume, and traffic fatality severity across North Carolina using five years of FARS crash data spatially joined to NCDOT speed limit and AADT datasets. The spatial analysis reveals that fatal crashes on high-speed roads concentrate along rural corridors in the eastern coastal plain and Piedmont, while urban crashes cluster near major metro areas at lower speed limits.
+This report looked at the relationship between posted speed limits, traffic volume, and fatal crash severity across North Carolina from 2018 through 2022. Crashes on high speed roads cluster along rural corridors in the eastern coastal plain and Piedmont, while lower-speed crashes concentrate in the major metro areas. The regression shows alcohol involvement is the strongest predictor at 2.9% more fatalities per crash, followed by traffic volume at about 1.5% and speed limit at about 0.7% per 10 mph. Urban roads average 3.6% fewer fatalities than rural. For Vision Zero, impaired driving enforcement is the clearest priority, with rural speed limit reductions and infrastructure on high volume roads as supporting interventions.
 
-The regression results indicate that alcohol involvement is the strongest predictor of crash severity, associated with roughly 2.9% more fatalities per crash. Speed limits and traffic volume show positive but modest associations with fatality severity — a 10 mph speed limit increase corresponds to approximately 0.7% more fatalities per crash, while moving from low- to high-volume roads is associated with roughly 1.5% more fatalities per crash. Urban roads average 3.6% fewer fatalities than rural roads.
+# Bibliography
 
-Taken together, these findings suggest that North Carolina's Vision Zero strategy should prioritize impaired driving enforcement as the most evidence-backed intervention, while also targeting rural high-speed corridors for speed limit review and investing in safety infrastructure on high-volume roads. Future research incorporating the full NC crash database, seatbelt use data, and road geometry characteristics would substantially strengthen these findings.
+- Elvik, R., Christensen, P., & Amundsen, A. (2004). *Speed and road accidents: An evaluation of the Power Model*. TØI Report 740/2004. Institute of Transport Economics.
+- Farmer, C. M. (2019). Relationship of traffic fatality rates to maximum state speed limits. *Traffic Injury Prevention, 18*(4), 375–380.
+- Lord, D., & Mannering, F. (2010). The statistical analysis of crash-frequency data: A review and assessment of methodological alternatives. *Transportation Research Part A, 44*(5), 291–305.
+- NCDOT. (2021). *North Carolina Vision Zero Action Plan*. NC Department of Transportation.
+- NCDOT. (2023). *North Carolina Crash Facts 2022*. NC Department of Transportation, Division of Motor Vehicles.
+- Nilsson, G. (2004). *Traffic safety dimensions and the Power Model to describe the effect of speed on safety*. Bulletin 221. Lund Institute of Technology.
+- Zwerling, C., Peek-Asa, C., Whitten, P. S., Choi, S. W., Sprince, N. L., & Jones, M. P. (2005). Fatal motor vehicle crashes in rural and urban areas. *Injury Prevention, 11*(3), 127–132.
+
+**Data Sources**
+
+- National Highway Traffic Safety Administration (NHTSA). (2023). *Fatality Analysis Reporting System (FARS), 2018–2022* [Dataset]. U.S. Department of Transportation. https://www.nhtsa.gov/research-data/fatality-analysis-reporting-system-fars
+- North Carolina Department of Transportation (NCDOT), Traffic Safety Unit & GIS Unit. (2023). *NCDOT Statutory Speed Limits* [GIS Shapefile]. https://opendata.rcmrd.org/datasets/NCDOT::ncdot-statutory-speed-limits
+- North Carolina Department of Transportation (NCDOT), Traffic Survey Group. (2025). *NCDOT 2024 Annual Average Daily Traffic (AADT) Stations* [GIS Shapefile]. https://connect.ncdot.gov/resources/State-Mapping/Pages/Traffic-Volume-Maps.aspx
+
+# AI Usage
+
+| Usage | Tool Used | How Edited |
+|---|---|---|
+| Code | Claude | A lot of formatting and syntax, making my code more uniform |
+| Brainstorming and Idea Generation | Claude | I came up with the original idea but found my results lackluster and Claude helped me incorporate Alcohol into the paper, it was pretty easy because FARS already included alcohol related fatal accidents as a statistic in my data set. |
+| Research | Claude |  Helped with finding sources to tie into my research |
